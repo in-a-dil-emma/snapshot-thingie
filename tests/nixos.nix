@@ -1,6 +1,7 @@
-{ nixosTest }:
-
-nixosTest {
+{ inputs ? import ../npins, system ? builtins.currentSystem }: let
+  pkgs = import inputs.nixpkgs { inherit system; };
+  inherit (pkgs.testers) runNixOSTest;
+in runNixOSTest {
   name = "NixOS test";
 
   defaults = {

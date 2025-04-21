@@ -17,8 +17,12 @@
     });
 
     nixosModules = {
-      snapshot-thingie = (import ./modules.nix).nixos;
+      snapshot-thingie = ./src/modules/nixos.nix;
     };
+
+    checks = genSystems ({ callPackage, testers, system, ... }: {
+      nixos-tests = callPackage ./tests/nixos.nix {};
+    });
     
     nixosConfigurations.shell = nixosSystem {
       system = "x86_64-linux";

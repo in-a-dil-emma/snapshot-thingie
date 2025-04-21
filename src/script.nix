@@ -1,10 +1,7 @@
-{ config, user, system }: let
-  inputs = import ../npins;
-  pkgs = import inputs.nixpkgs { inherit system; };
-
+{ config, pkgs, lib, user }: let
   inherit (builtins) map toString;
   inherit (pkgs) runCommandNoCC shellcheck util-linux findutils gawk;
-  inherit (pkgs.lib) getExe makeBinPath concatStringsSep escapeShellArg pipe;
+  inherit (lib) getExe makeBinPath concatStringsSep escapeShellArg pipe;
 
   cfg = config.services.snapshot-thingie;
 in runCommandNoCC "snaphot-script" {
