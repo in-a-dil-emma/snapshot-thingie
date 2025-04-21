@@ -1,0 +1,35 @@
+{
+  inputs = {
+    systems.url = "github:nix-systems/default-linux";
+  };
+
+  outputs = { self, systems }: let
+    inputs = import ./npins;
+    lib = import (inputs.nixpkgs + /lib);
+    nixosSystem = import (inputs.nixpkgs + "/nixos/lib/eval-config.nix");
+
+    inherit (lib) genAttrs;
+
+    genSystems = f: genAttrs (import systems) (system: f (import inputs.nixpkgs { inherit system; }));
+  in {
+    devShells = genSystems ({ callPackage, ... }: {
+      default = callPackage ./shell.nix {};
+    });
+
+    nixosModules = {
+      snapshot-thingie = (import ./modules.nix).nixos;
+    };
+    
+    nixosConfigurations.shell = nixosSystem {
+      system = "x86_64-linux";
+      inherit lib;
+      modules = [
+        ({ modulesPath, ... }: { imports = [ (modulesPath + "/virtualisation/qemu-vm.nix") ]; })
+
+        self.nixosModules.snapshot-thingie
+
+        ./vm/configuration.nix
+      ];
+    };
+  };
+}
