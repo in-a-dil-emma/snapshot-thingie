@@ -12,9 +12,7 @@
 
     genSystems = f: genAttrs (import systems) (system: f (import inputs.nixpkgs { inherit system; }));
   in {
-    devShells = genSystems ({ callPackage, ... }: {
-      default = callPackage ./shell.nix {};
-    });
+    devShell = genSystems ({ callPackage, ... }: callPackage ./shell.nix {});
 
     nixosModules = {
       snapshot-thingie = ./src/modules/nixos.nix;

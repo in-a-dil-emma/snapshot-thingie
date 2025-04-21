@@ -1,8 +1,8 @@
 { config, pkgs, lib, ... }:
 
 let
-  inherit (pkgs) callPackage;
   inherit (lib) mkIf mkMerge pipe getExe flatten;
+  inherit (pkgs) callPackage;
   inherit (builtins) map;
   
   cfg = config.services.snapshot-thingie;
