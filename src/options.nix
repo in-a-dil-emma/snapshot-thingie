@@ -1,7 +1,7 @@
 { config, lib, ... }:
 
 let
-  inherit (lib) mkOption mdDoc mkEnableOption all;
+  inherit (lib) mkOption mkEnableOption all;
   inherit (lib.types) bool nullOr path str ints listOf;
 
   cfg = config.services.snapshot-thingie;
@@ -10,7 +10,7 @@ in {
     enable = mkOption {
       type = bool;
       default = false;
-      description = mdDoc ''
+      description = ''
         Enable/disable this module.
       '';
     };
@@ -20,11 +20,8 @@ in {
     prefix = mkOption {
       type = nullOr path;
       default = "/home/.snapshots";
-      description = mdDoc ''
+      description = ''
         Path where to store snapshots. Must be on the same device to take advantage of reflink copies.
-        
-        By default will be:
-        - /home/.snapshots
       '';
     };
     trashDirs = mkOption {
