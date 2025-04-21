@@ -1,5 +1,6 @@
-{ inputs ? import ../npins, system ? builtins.currentSystem }: let
-  pkgs = import inputs.nixpkgs { inherit system; };
+let
+  inputs = import ../npins;
+  pkgs = import inputs.nixpkgs {};
   inherit (pkgs.testers) runNixOSTest;
 in runNixOSTest {
   name = "NixOS test";

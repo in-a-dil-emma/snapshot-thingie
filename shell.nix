@@ -1,4 +1,5 @@
-{ inputs ? import ./npins }: let
+let
+  inputs = import ./npins;
   pkgs = import inputs.nixpkgs {};
   inherit (pkgs) mkShellNoCC npins;
 in mkShellNoCC {
