@@ -2,8 +2,8 @@
   virtualisation = {
     graphics = false;
     cores = 8;
-    memorySize = 8096 * 2;
-    diskSize = 64 * 1024;
+    memorySize = 1024 * 2;
+    diskSize = 1024 * 4;
     qemu = {
       consoles = [ "tty0" "hvc0" ];
       options = [
