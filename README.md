@@ -1,3 +1,5 @@
 snapshot thing
 
-see ./src/options.nix
+extracted from my nixos config
+
+consult [options.nix](src/options.nix)
