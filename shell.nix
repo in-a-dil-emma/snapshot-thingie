@@ -1,15 +1,15 @@
-{ inputs ? import ./npins, system ? builtins.currentSystem }: let
-  pkgs = import inputs.nixpkgs { inherit system; };
-  inherit (pkgs) mkShellNoCC nixos-shell npins callPackage;
+{ inputs ? import ./npins }: let
+  pkgs = import inputs.nixpkgs {};
+  inherit (pkgs) mkShellNoCC npins;
 in mkShellNoCC {
   packages = [
-    nixos-shell
     npins
-
-    (callPackage ./scripts/run-shell.nix { })
   ];
   shellHook = ''
-    echo -e "\033[31mrun-shell\033[0m to run your code in nixos-shell"
+    echo 'test config:
+      $ nix-shell vm/shell.nix
+    run tests:
+      $ nix-build tests'
   '';
   NIX_PATH="nixpkgs=${pkgs.path}";
 }
