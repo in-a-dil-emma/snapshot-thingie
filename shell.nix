@@ -5,11 +5,5 @@ in mkShellNoCC {
   packages = [
     npins
   ];
-  shellHook = ''
-    echo 'test config:
-      $ nix-shell vm/shell.nix
-    run tests:
-      $ nix-build tests'
-  '';
   NIX_PATH="nixpkgs=${pkgs.path}";
 }
