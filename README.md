@@ -1,8 +1,6 @@
-snapshot thing
+# snapshot thing
 
-extracted from my nixos config
-
-consult [options.nix](src/options.nix)
+*Extracted from my nixos config.*
 
 The most flakes you'll get:
 
@@ -13,4 +11,23 @@ git+file:///.../snapshot-thingie
     └───snapshot-thingie: NixOS module
 ```
 
-Adding a flake.nix SOMEHOW slows down direnv.
+## INSTALLING
+
+Add the module using npins:
+```console
+$ npins add github in-a-dil-emma snapshot-thingie -b dev
+```
+
+Or flakes:
+
+```nix
+{
+  inputs = {
+    snapshots.url = "github:in-a-dil-emma/snapshot-thingie";
+  };
+}
+```
+
+## CONFIGURING
+
+Consult [options.nix](src/options.nix).
