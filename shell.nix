@@ -6,5 +6,5 @@ in mkShellNoCC {
   packages = [
     npins
   ];
-  NIX_PATH="nixpkgs=${pkgs.path}";
+  NIX_PATH="nixpkgs=${inputs.nixpkgs}";
 }
