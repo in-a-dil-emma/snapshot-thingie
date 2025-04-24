@@ -1,7 +1,7 @@
 { config, lib, ... }:
 
 let
-  inherit (lib) mkOption mkEnableOption all mkIf;
+  inherit (lib) mkOption mkEnableOption all mkIf mapAttrsToList filterAttrs pipe;
   inherit (lib.types) bool nullOr path str ints listOf;
 
   cfg = config.services.snapshot-thingie;
@@ -16,6 +16,7 @@ in {
     };
     users = mkOption {
       type = listOf str;
+      default = pipe config.users.users [ (filterAttrs (_: value: value.isNormalUser)) (mapAttrsToList (_: value: value.name)) ];
     };
     prefix = mkOption {
       type = nullOr path;
