@@ -1,7 +1,7 @@
 { config, lib, ... }:
 
 let
-  inherit (lib) mkOption mkEnableOption all;
+  inherit (lib) mkOption mkEnableOption all mkIf;
   inherit (lib.types) bool nullOr path str ints listOf;
 
   cfg = config.services.snapshot-thingie;
@@ -53,7 +53,7 @@ in {
   };
 
   config = {
-    assertions = [
+    assertions = mkIf cfg.enable [
       { assertion = cfg.runOnActivation || cfg.onCalendar != null; message = "Either onCalendar needs to be set or runOnActivation needs to be enabled"; }
       { assertion = all (elem: config.users.users ? ${elem}) cfg.users; message = "Users must be declared with the users.users option."; }
     ];
