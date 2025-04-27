@@ -6,6 +6,10 @@ in runNixOSTest {
   name = "NixOS test";
 
   defaults = {
+    imports = [
+      ../nixos
+    ];
+
     services.snapshot-thingie = {
       enable = true;
       users = [ "user" ];

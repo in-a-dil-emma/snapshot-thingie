@@ -10,7 +10,7 @@ in
 
 {
   imports = [
-    ../options.nix
+    ../module
   ];
   
   config.systemd = {
@@ -27,7 +27,7 @@ in
         wantedBy = mkIf cfg.runOnActivation [
           "multi-user.target"
         ];
-        script = getExe (callPackage ../script.nix {
+        script = getExe (callPackage ../module/script.nix {
           inherit user config;
         });
         startAt = mkIf (cfg.onCalendar != null) cfg.onCalendar;

@@ -7,8 +7,7 @@ The most flakes you'll get:
 ```console
 $ nix flake show
 git+file:///.../snapshot-thingie
-└───nixosModules
-    └───snapshot-thingie: NixOS module
+└───nixosModule: NixOS module
 ```
 
 ## INSTALLING
@@ -23,11 +22,11 @@ Or flakes:
 ```nix
 {
   inputs = {
-    snapshots.url = "github:in-a-dil-emma/snapshot-thingie";
+    snapshots.url = "github:in-a-dil-emma/snapshot-thingie/dev";
   };
 }
 ```
 
 ## CONFIGURING
 
-Consult [options.nix](src/options.nix).
+Consult [options.nix](module/options.nix).

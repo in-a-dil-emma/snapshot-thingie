@@ -7,7 +7,7 @@ let
 
   vm = nixos [
     ({ modulesPath, ... }: { imports = [ (modulesPath + "/virtualisation/qemu-vm.nix") ]; })
-    ../src/modules/nixos.nix
+    ../nixos
     ./configuration.nix
   ];
 in mkShellNoCC {
