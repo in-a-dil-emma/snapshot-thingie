@@ -19,6 +19,6 @@ in runCommandNoCC "snaphot-script" {
     --subst-var-by trashDirs   "${pipe cfg.trashDirs [ (map escapeShellArg) (concatStringsSep " ") ]}" \
     --subst-var-by extraPATH   "${makeBinPath [ util-linux findutils gawk ]}"
   chmod 755 $out/bin/create-snapshot
-  ${getExe shellcheck} --exclude=SC2164,SC2207 $out/bin/create-snapshot
+  ${getExe shellcheck} --exclude=SC2164 $out/bin/create-snapshot
   patchShebangs $out/bin/create-snapshot
 ''
