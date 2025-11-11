@@ -1,10 +1,10 @@
 { config, pkgs, lib, user }: let
   inherit (builtins) map toString;
-  inherit (pkgs) runCommandNoCC shellcheck util-linux findutils gawk;
+  inherit (pkgs) runCommand shellcheck util-linux findutils gawk;
   inherit (lib) getExe makeBinPath concatStringsSep escapeShellArg pipe;
 
   cfg = config.services.snapshot-thingie;
-in runCommandNoCC "snaphot-script" {
+in runCommand "snaphot-script" {
   meta.mainProgram = "create-snapshot";
 } ''
   mkdir -p $out/bin
