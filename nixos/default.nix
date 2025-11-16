@@ -31,6 +31,7 @@ in
           inherit user config;
         });
         startAt = mkIf (cfg.onCalendar != null) cfg.onCalendar;
+        serviceConfig.IODeviceWeight = [ "${home} 10" "${cfg.prefix} 10" ];
       };
     })) mkMerge (mkIf cfg.enable) ];
 

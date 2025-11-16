@@ -42,7 +42,11 @@ trash() {
     chmod 0700 "$trashDir"
     chown root:root "$trashDir"
     # queue a job
-    systemd-run --description="Trash $trashDir" rm -rf -- "$trashDir" &>>"$LOGFILE"
+    local runArgs=()
+    #runArgs+=(--property=IOReadBandwidthMax="$trashDir 100M")
+    #runArgs+=(--property=IOWriteBandwidthMax="$trashDir 100M")
+    runArgs+=(--property=IODeviceWeight="$trashDir 10")
+    systemd-run --description="Trash $trashDir" "${runArgs[@]}" find "$trashDir" -delete &>>"$LOGFILE"
 }
 create() {
     mkdir -p "$PREFIX"
