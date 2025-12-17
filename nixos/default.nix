@@ -59,7 +59,6 @@ in
       (map (
         user: [
           "d ${cfg.prefix}/${user.name} 0755 ${user.name} ${user.group} - -"
-          "x ${cfg.prefix}/${user.name} -    -            -             - -"
         ]
       ))
       flatten
