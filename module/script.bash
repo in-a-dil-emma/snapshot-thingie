@@ -55,11 +55,12 @@ create() {
 }
 cleanup() {
     pushd "$SNAPSHOT" &>/dev/null
-    if [ ${#TRASH_DIRS[@]} -gt 0 ]; then
-        for i in "${TRASH_DIRS[@]}"; do
-            trash "$i"
+    local i="" j=""
+    for i in "${TRASH_DIRS[@]}"; do
+        for j in $i; do
+            trash "$j"
         done
-    fi
+    done
     popd &>/dev/null
 
     for i in "$BASE_DIR/$USER_NAME"/!(+([0-9])); do
