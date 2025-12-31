@@ -1,5 +1,0 @@
-{
-  outputs = _: {
-    nixosModule = ./nixos;
-  };
-}
