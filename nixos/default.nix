@@ -57,6 +57,7 @@ in
           path = [ findutils ];
           serviceConfig.IODeviceWeight="${cfg.prefix}/.trash 10";
           script = ''
+            set +e
             find "${cfg.prefix}/.trash" -mindepth 1 -delete
           '';
         };
@@ -65,6 +66,7 @@ in
           path = [ getent findutils ];
           serviceConfig.IODeviceWeight="${cfg.prefix}/.trash 10";
           script = ''
+            set +e
             cd "${cfg.prefix}"
             for i in *; do
               if ! getent passwd "$i"; then
