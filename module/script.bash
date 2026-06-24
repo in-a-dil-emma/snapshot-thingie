@@ -13,10 +13,10 @@ declare -l DATE_NOW
 KEEP_DAYS=@keepDays@
 KEEP_WEEKS=@keepWeeks@
 
-BASE_DIR=@snapshotDir@
-USER_NAME=@userName@
-USER_GROUP=@userGroup@
-USER_HOME=@userHome@
+BASE_DIR="@snapshotDir@"
+USER_NAME="@userName@"
+USER_GROUP="@userGroup@"
+USER_HOME="@userHome@"
 TRASH_DIRS=(@trashDirs@)
 
 DATE_NOW="$(date +%Y-%m-%d_%H-%M-%S)"
