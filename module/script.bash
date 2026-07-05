@@ -46,7 +46,7 @@ trash() {
     #runArgs+=(--property=IOReadBandwidthMax="$trashDir 100M")
     #runArgs+=(--property=IOWriteBandwidthMax="$trashDir 100M")
     runArgs+=(--property=IODeviceWeight="$trashDir 10")
-    systemd-run --unit='clean-snapshot@'"$(systemd-escape "$trashDir")" --description="Trash $trashDir" "${runArgs[@]}" -- find "$trashDir" -d -delete &>>"$LOGFILE"
+    systemd-run --unit='clean-snapshot@'"$(systemd-escape "$trashDir")" --description="Trash $trashDir" "${runArgs[@]}" -- find "$trashDir" -depth -delete &>>"$LOGFILE"
 }
 create() {
     mkdir -p "$PREFIX"
